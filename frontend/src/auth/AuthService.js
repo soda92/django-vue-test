@@ -38,7 +38,6 @@ export default class AuthService {
                 console.log(err)
                 alert(`Error: ${err.error}. Check the console for further details.`)
             }
-            router.replace('/')
         })
     }
 
@@ -60,7 +59,6 @@ export default class AuthService {
         delete this.idToken
         delete this.expiresAt
         this.authNotifier.emit('authChange', false)
-        router.replace('/')
     }
 
     isAuthenticated() {
