@@ -11,6 +11,9 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "auth0-js": "^9.24.0",
+    "axios": "^0.25.0",
+    "eventemitter3": "^5.0.1",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },

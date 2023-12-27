@@ -10,14 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import json
-from six.moves.urllib import request
+import requests
 from cryptography.x509 import load_pem_x509_certificate
 from cryptography.hazmat.backends import default_backend
 
 import django
 from django.utils.encoding import smart_str
+
 django.utils.encoding.smart_text = smart_str
 from django.utils.translation import gettext
+
 django.utils.translation.ugettext = gettext
 
 from pathlib import Path
@@ -50,6 +52,7 @@ INSTALLED_APPS = [
     "catalog",
     "rest_framework",
     "rest_framework_jwt",
+    "corsheaders",
 ]
 
 REST_FRAMEWORK = {
@@ -62,12 +65,15 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+CORS_ORIGIN_WHITELIST = ("http://localhost:8080",)
 
 ROOT_URLCONF = "djangovue.urls"
 
@@ -148,8 +154,8 @@ PUBLIC_KEY = None
 JWT_ISSUER = None
 
 if AUTH0_DOMAIN:
-    jsonurl = request.urlopen(f"https://{AUTH0_DOMAIN}/.well-known/jwks.json")
-    jwks = json.loads(jsonurl.read().decode("utf-8"))
+    jsonurl = requests.get(f"https://{AUTH0_DOMAIN}/.well-known/jwks.json")
+    jwks = json.loads(jsonurl.content.decode("utf-8"))
     cert = f"""-----BEGIN CERTIFICATE-----
 {jwks['keys'][0]['x5c'][0]}
 -----END CERTIFICATE-----"""
