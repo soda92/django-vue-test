@@ -14,6 +14,12 @@ from six.moves.urllib import request
 from cryptography.x509 import load_pem_x509_certificate
 from cryptography.hazmat.backends import default_backend
 
+import django
+from django.utils.encoding import smart_str
+django.utils.encoding.smart_text = smart_str
+from django.utils.translation import gettext
+django.utils.translation.ugettext = gettext
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
