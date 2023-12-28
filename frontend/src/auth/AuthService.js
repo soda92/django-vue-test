@@ -37,7 +37,18 @@ export default class AuthService {
             } else if (err) {
                 console.log(err)
                 alert(`Error: ${err.error}. Check the console for further details.`)
+            } else {
+                this.silentAuth()
+                    .then(() => {
+                        console.log('user logged in through silent auth')
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                        alert(`Error: ${err.error}. Check the console for further details.`)
+                    })
             }
+
+            router.replace('/').catch(() => { })
         })
     }
 
@@ -59,6 +70,7 @@ export default class AuthService {
         delete this.idToken
         delete this.expiresAt
         this.authNotifier.emit('authChange', false)
+        router.replace('/').catch(() => { })
     }
 
     isAuthenticated() {
@@ -71,5 +83,15 @@ export default class AuthService {
 
     getUserProfile(cb) {
         return this.profile
+    }
+
+    silentAuth() {
+        return new Promise((resolve, reject) => {
+            this.auth0.checkSession({}, (err, authResult) => {
+                if (err) return reject(err)
+                this.setSession(authResult)
+                resolve()
+            })
+        })
     }
 }

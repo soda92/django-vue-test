@@ -10,7 +10,7 @@
     <button class="btn btn-primary btn-margin" v-if="authenticated" @click="logout()">
       Log Out
     </button>
-    {{ "{{ " }}{{"message"}} }}
+    {{ message }}
     <br>
   </div>
 </template>
