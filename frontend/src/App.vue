@@ -4,7 +4,9 @@
       <h1 class="title">
         <pre>&lt;zap-slideout&gt;</pre>
       </h1>
-      <p class="description">Give it a jolt. Click <strong>Open</strong> at the top.</p>
+      <p class="description">
+        Give it a jolt. Click <strong>Open</strong> at the top.
+      </p>
     </div>
     <div>
       <sidebar></sidebar>
@@ -13,8 +15,41 @@
 </template>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="css">
-@import '../static/style.css';
+<style>
+/* main css, body, etc */
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #fff;
+  background-color: #2c3e50;
+}
+
+strong {
+  font-weight: 600;
+}
+
+.info {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translateX(50%);
+  text-align: center;
+
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.description {
+  margin-top: 20px;
+}
+
+/* responsive grid */
+
+* {
+  box-sizing: border-box;
+}
 </style>
 
 <script>
@@ -24,28 +59,7 @@ export default {
   components: {
     'sidebar': Sidebar
   },
-  name: 'app',
-  data() {
-    this.handleAuthentication()
-    this.authenticated = false
-
-    return {
-      authenticated: false,
-      message: ''
-    }
-  },
-
-  methods: {
-    login() {
-    },
-    handleAuthentication() {
-    },
-    logout() {
-    },
-    privateMessage() {
-      this.messgae = 'private message'
-    }
-  }
+  name: 'app'
 }
 
 </script>
