@@ -38,7 +38,7 @@ import AuthService from './auth/AuthService'
 import Sidebar from './components/Sidebar'
 import axios from 'axios'
 
-const API_URL = "http://localhost:8000"
+const API_URL = 'http://localhost:8000'
 const auth = new AuthService()
 
 export default {
@@ -72,21 +72,20 @@ export default {
     },
     privateMessage() {
       const url = `${API_URL}/api/private`
-      return axios.get
-        (
-          url,
+      return axios.get(
+        url,
+        {
+          headers:
           {
-            headers:
-            {
-              Authorization: `Bearer ${auth.getAuthToken()}`
-            }
+            Authorization: `Bearer ${auth.getAuthToken()}`
           }
-        ).then(
-          (response) => {
-            console.log(response.data)
-            this.messgae = response.data || ""
-          }
-        )
+        }
+      ).then(
+        (response) => {
+          console.log(response.data)
+          this.messgae = response.data || ''
+        }
+      )
     }
   }
 }
