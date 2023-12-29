@@ -3,7 +3,7 @@
     <div class="sidebar-opener" @click="toggle">{{ openerText }}</div>
     <ul class="sidebar-menu">
       <li class="sidebar-menu-item">
-        <img class="zap-emoji" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/19332/zap-emoji.svg" alt="Zap Emoji" />
+        <img class="zap-emoji" src="../assets/zap-emoji.svg" alt="Zap Emoji" />
       </li>
       <li class="sidebar-menu-item" v-for="item in menu" :key="item">{{ item }}</li>
       <li class="sidebar-menu-item--small" v-for="item in smallMenu" :key="item">{{ item }}</li>
