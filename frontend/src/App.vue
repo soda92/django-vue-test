@@ -26,7 +26,6 @@
   </div>
 </template>
 
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 a {
@@ -35,7 +34,6 @@ a {
 </style>
 
 <script>
-/* eslint-disable */
 import AuthService from './auth/AuthService'
 import Sidebar from './components/Sidebar'
 import axios from 'axios'

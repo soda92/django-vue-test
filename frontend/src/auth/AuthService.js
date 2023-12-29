@@ -1,4 +1,3 @@
-/* eslint-disable */
 import auth0 from 'auth0-js'
 import EventEmitter from 'eventemitter3'
 import router from './../router'
