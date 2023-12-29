@@ -12,18 +12,41 @@
     </button>
     {{ message }}
     <br>
+    <div id="main">
+      <div class="info">
+        <h1 class="title">
+          <pre>&lt;zap-slideout&gt;</pre>
+        </h1>
+        <p class="description">Give it a jolt. Click <strong>Open</strong> at the top.</p>
+      </div>
+      <div>
+        <sidebar></sidebar>
+      </div>
+    </div>
   </div>
 </template>
+
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+a {
+  color: #42b983;
+}
+</style>
 
 <script>
 /* eslint-disable */
 import AuthService from './auth/AuthService'
+import Sidebar from './components/Sidebar'
 import axios from 'axios'
 
 const API_URL = "http://localhost:8000"
 const auth = new AuthService()
 
 export default {
+  components: {
+    'sidebar': Sidebar
+  },
   name: 'app',
   data() {
     this.handleAuthentication()
