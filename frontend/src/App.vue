@@ -34,12 +34,7 @@ a {
 </style>
 
 <script>
-import AuthService from './auth/AuthService'
 import Sidebar from './components/Sidebar'
-import axios from 'axios'
-
-const API_URL = 'http://localhost:8000'
-const auth = new AuthService()
 
 export default {
   components: {
@@ -50,10 +45,6 @@ export default {
     this.handleAuthentication()
     this.authenticated = false
 
-    auth.authNotifier.on('authChange', authState => {
-      this.authenticated = authState.authenticated
-    })
-
     return {
       authenticated: false,
       message: ''
@@ -62,30 +53,13 @@ export default {
 
   methods: {
     login() {
-      auth.login()
     },
     handleAuthentication() {
-      auth.handleAuthentication()
     },
     logout() {
-      auth.logout()
     },
     privateMessage() {
-      const url = `${API_URL}/api/private`
-      return axios.get(
-        url,
-        {
-          headers:
-          {
-            Authorization: `Bearer ${auth.getAuthToken()}`
-          }
-        }
-      ).then(
-        (response) => {
-          console.log(response.data)
-          this.messgae = response.data || ''
-        }
-      )
+      this.messgae = 'private message'
     }
   }
 }
